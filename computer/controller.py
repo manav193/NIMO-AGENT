@@ -1,8 +1,11 @@
 """Policy-enforced computer controller."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from computer.adapter import ComputerAdapter
 from computer.policy import ComputerPolicy
+
 
 @dataclass
 class ComputerController:
@@ -38,8 +41,9 @@ class ComputerController:
         self.policy.check_point(x,y)
         observation=self.screenshot()
         try:
-            from PIL import Image
             from io import BytesIO
+
+            from PIL import Image
             with Image.open(BytesIO(observation)) as im: size=im.size
         except Exception:
             size=(self.policy.max_x+1,self.policy.max_y+1)

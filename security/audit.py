@@ -1,7 +1,9 @@
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
+
 from security.secrets import redact
+
 
 def _safe(value: Any) -> Any:
     if isinstance(value, str): return redact(value)
@@ -14,6 +16,6 @@ def _safe(value: Any) -> Any:
 class AuditLogger:
     events:list[dict[str,Any]]=field(default_factory=list)
     def record(self,action:str,actor:str,resource:str,details:dict[str,Any]|None=None)->None:
-        self.events.append({"timestamp":datetime.now(timezone.utc).isoformat(),
+        self.events.append({"timestamp":datetime.now(UTC).isoformat(),
             "action":redact(action),"actor":redact(actor),"resource":redact(resource),
             "details":_safe(details or {})})

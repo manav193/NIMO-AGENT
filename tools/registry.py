@@ -1,5 +1,6 @@
 from tools.contracts import ToolSpec
 
+
 class ToolRegistry:
     """Declarative tool catalogue. Execution belongs exclusively to Executor."""
     def __init__(self) -> None:

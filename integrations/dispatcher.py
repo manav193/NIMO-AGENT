@@ -6,6 +6,7 @@ from integrations.providers import ProviderRegistry, ProviderRequest, ProviderRe
 from integrations.registry import PluginRegistry
 from security.audit import AuditLogger
 
+
 @dataclass(frozen=True)
 class DispatchResult:
     provider: str

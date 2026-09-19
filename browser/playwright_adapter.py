@@ -1,6 +1,9 @@
 """Optional real Chromium adapter. Install with: pip install 'nimo-agent[browser]' and playwright install chromium."""
 from __future__ import annotations
+
 from pathlib import Path
+
+
 class PlaywrightBrowser:
     def __init__(self,headless:bool=True,download_dir:str|None=None):
         from playwright.sync_api import sync_playwright

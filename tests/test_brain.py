@@ -1,6 +1,8 @@
-from agent.model_brain import ModelBrain
 from agent.context import ContextWindow
+from agent.model_brain import ModelBrain
 from agent.recovery import RecoveryPolicy
+
+
 class Core:
     def chat(self,message,intent=None): return {"reply":"ok","tool_calls":[{"tool_name":"fs.read","arguments":{"path":"README.md"},"reason":"inspect docs"}]}
 def test_brain_parses_structured_tool_calls():

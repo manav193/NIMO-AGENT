@@ -1,5 +1,6 @@
-from tools.git import GitWorkspace
 from github.coding_agent import CodingAgent
+from tools.git import GitWorkspace
+
 
 def test_git_workspace_is_inspection_only(tmp_path):
     import subprocess

@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from enum import Enum
+
 from tools.contracts import RiskLevel, ToolSpec
+
 
 class AgentMode(str, Enum):
     BASIC = "basic"

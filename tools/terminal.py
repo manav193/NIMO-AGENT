@@ -3,6 +3,7 @@ import subprocess
 
 from tools.contracts import RiskLevel, ToolResult, ToolSpec
 
+
 class SafeTerminal:
     def __init__(self, allowed_commands=None, timeout=10):
         self.allowed_commands = allowed_commands or {"python", "python3", "pytest", "ruff", "git"}

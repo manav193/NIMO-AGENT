@@ -1,5 +1,7 @@
 from pathlib import Path
+
 from tools.filesystem import SafeFileSystem
+
 
 def test_filesystem_allows_only_configured_root(tmp_path: Path):
     allowed = tmp_path / "allowed"

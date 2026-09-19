@@ -1,6 +1,8 @@
 from dataclasses import replace
-from datetime import datetime, timezone
+from datetime import UTC, datetime
+
 from automation.models import Automation, AutomationRun, AutomationStatus
+
 
 class AutomationEngine:
     """Lifecycle + run journal; actual actions remain behind approved adapters."""
@@ -32,12 +34,12 @@ class AutomationEngine:
         self._runs.append(run)
 
     def start_run(self, automation_id: str) -> AutomationRun:
-        run = AutomationRun(automation_id, datetime.now(timezone.utc))
+        run = AutomationRun(automation_id, datetime.now(UTC))
         self.record_run(run)
         return run
 
     def finish_run(self, run: AutomationRun, success: bool, error: str | None = None) -> AutomationRun:
-        finished = replace(run, finished_at=datetime.now(timezone.utc), success=success, error=error)
+        finished = replace(run, finished_at=datetime.now(UTC), success=success, error=error)
         self._runs[-1] = finished
         return finished
 

@@ -1,5 +1,7 @@
 """Window/app observation boundary; no arbitrary process launching."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class WindowInfo:
     title:str

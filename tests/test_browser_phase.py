@@ -1,5 +1,7 @@
-from browser.recovery import BrowserRecovery
 from browser.policy import BrowserPolicy
+from browser.recovery import BrowserRecovery
+
+
 def test_recovery_is_bounded():
     r=BrowserRecovery(2); assert r.allowed(0); assert r.allowed(1); assert not r.allowed(2)
 def test_policy_download_and_scheme_boundaries():

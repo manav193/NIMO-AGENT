@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 
+
 @dataclass
 class ApprovalManager:
     """Explicit approval boundary; nothing is approved implicitly."""

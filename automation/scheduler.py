@@ -1,6 +1,7 @@
-from dataclasses import dataclass
-from datetime import datetime, timezone
 import sqlite3
+from dataclasses import dataclass
+from datetime import UTC, datetime
+
 
 @dataclass(frozen=True)
 class ScheduleSpec:
@@ -20,12 +21,12 @@ class Scheduler:
             raise ValueError("Scheduled times must include a timezone.")
         job_id = job.job_id or f"{job.automation_id}:{job.run_at.isoformat()}"
         self.db.execute("INSERT OR IGNORE INTO jobs(job_id,automation_id,run_at) VALUES(?,?,?)",
-                        (job_id, job.automation_id, job.run_at.astimezone(timezone.utc).isoformat()))
+                        (job_id, job.automation_id, job.run_at.astimezone(UTC).isoformat()))
         self.db.commit()
         return job_id
 
     def due(self, now: datetime | None = None) -> list[ScheduleSpec]:
-        current = (now or datetime.now(timezone.utc)).astimezone(timezone.utc)
+        current = (now or datetime.now(UTC)).astimezone(UTC)
         rows = self.db.execute("SELECT job_id,automation_id,run_at FROM jobs WHERE claimed=0 AND run_at<=? ORDER BY run_at",
                                (current.isoformat(),)).fetchall()
         return [ScheduleSpec(a, datetime.fromisoformat(r), j) for j,a,r in rows]

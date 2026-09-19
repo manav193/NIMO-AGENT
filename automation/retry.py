@@ -1,5 +1,7 @@
 """Bounded workflow retry/backoff policy."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class RetryDecision:
     retry:bool

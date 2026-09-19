@@ -1,8 +1,10 @@
-import base64,os
-from security.vault import EncryptedVault
-from security.consent import ConsentManager,Consent,Purpose
+import os
+
+from learning.pipeline import LearningPipeline, LearningProposal
 from memory.store import PersonalMemory
-from learning.pipeline import LearningPipeline,LearningProposal
+from security.consent import Consent, ConsentManager, Purpose
+from security.vault import EncryptedVault
+
 
 def consent(mgr,purpose,category="conversation"):
     c=Consent("c1",purpose,True,frozenset({category})); mgr.record(c); return c

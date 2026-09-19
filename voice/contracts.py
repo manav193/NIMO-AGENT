@@ -1,5 +1,7 @@
 """Voice pipeline contracts."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class VoiceInput:
     text:str

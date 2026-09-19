@@ -4,6 +4,7 @@ from security.audit import AuditLogger
 from security.permissions import PermissionEngine
 from tools.registry import ToolRegistry
 
+
 def build_runtime() -> AgentRuntime:
     registry = ToolRegistry()
     permissions = PermissionEngine()

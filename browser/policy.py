@@ -1,7 +1,9 @@
 """Browser safety boundary: navigation is constrained before any browser adapter sees it."""
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from urllib.parse import urlparse
+
 
 @dataclass
 class BrowserPolicy:

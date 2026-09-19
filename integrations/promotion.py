@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
+
 class PromotionChannel(str, Enum):
     IN_APP = "in_app"
     WEBSITE = "website"

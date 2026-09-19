@@ -1,5 +1,7 @@
 """Bounded project validation runner using the safe terminal boundary."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class TestReport:
     passed:bool

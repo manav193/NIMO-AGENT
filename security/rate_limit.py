@@ -1,4 +1,6 @@
 import time
+
+
 class RateLimiter:
     def __init__(self,limit=30,window_seconds=60): self.limit=max(1,limit); self.window=window_seconds; self.events={}
     def allow(self,key):

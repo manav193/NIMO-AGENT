@@ -1,6 +1,8 @@
 """Structured model-brain boundary for NIMO-Core backed planning."""
 from dataclasses import dataclass
 from typing import Any
+
+
 @dataclass(frozen=True)
 class ToolIntent:
     tool_name:str

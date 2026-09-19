@@ -1,6 +1,8 @@
 """Computer-use safety policy. Physical input is opt-in and confirmation-gated."""
 from __future__ import annotations
+
 from dataclasses import dataclass, field
+
 
 @dataclass
 class ComputerPolicy:

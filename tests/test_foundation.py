@@ -2,8 +2,9 @@ from agent.runtime import AgentRuntime
 from agent.state import AgentState
 from security.audit import AuditLogger
 from security.permissions import PermissionEngine
-from tools.contracts import RiskLevel, ToolRequest, ToolSpec, ToolResult
+from tools.contracts import RiskLevel, ToolRequest, ToolResult, ToolSpec
 from tools.registry import ToolRegistry
+
 
 def ok_handler(args):
     return ToolResult(success=True, output=args)

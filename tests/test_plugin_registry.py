@@ -1,6 +1,7 @@
-from integrations.registry import PluginRegistry, PluginSpec
 from integrations.dispatcher import PluginDispatcher
 from integrations.plugin_router import PluginInvocation
+from integrations.registry import PluginRegistry, PluginSpec
+
 
 def test_plugin_registry_resolves_at_name():
     registry = PluginRegistry()

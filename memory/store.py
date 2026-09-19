@@ -1,7 +1,9 @@
 """Consent-aware memory facade. Raw memory stays in the encrypted vault."""
 from __future__ import annotations
+
 from security.consent import ConsentManager, Purpose
 from security.vault import EncryptedVault
+
 
 class PersonalMemory:
     def __init__(self,vault:EncryptedVault,consent:ConsentManager):

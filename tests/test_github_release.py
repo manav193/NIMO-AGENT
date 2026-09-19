@@ -1,5 +1,7 @@
 from github.branching import BranchPolicy
 from github.release import ReleaseWorkflow
+
+
 def test_protected_branch():
     try: BranchPolicy().validate("main")
     except PermissionError: pass

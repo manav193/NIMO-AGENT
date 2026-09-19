@@ -1,7 +1,10 @@
 """Guarded GitHub coding workflow boundary."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from tools.git import GitWorkspace
+
 
 @dataclass(frozen=True)
 class ChangeProposal:

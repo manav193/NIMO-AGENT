@@ -1,8 +1,11 @@
 """Isolated browser session lifecycle."""
 from dataclasses import dataclass
-from browser.policy import BrowserPolicy
+
 from browser.controller import BrowserController
 from browser.playwright_adapter import PlaywrightBrowser
+from browser.policy import BrowserPolicy
+
+
 @dataclass
 class BrowserSessionManager:
     policy:BrowserPolicy

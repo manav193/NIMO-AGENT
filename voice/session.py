@@ -1,5 +1,7 @@
 """Hands-free voice session with explicit stop and bounded input."""
 from dataclasses import dataclass
+
+
 @dataclass
 class VoiceSession:
     active:bool=False

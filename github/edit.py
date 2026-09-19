@@ -1,5 +1,7 @@
 """Explicit, reviewable code edit proposals."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class EditProposal:
     path:str

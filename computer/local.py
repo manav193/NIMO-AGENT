@@ -5,6 +5,7 @@ Install the computer extra to enable real screenshots/input:
 """
 from __future__ import annotations
 
+
 class LocalComputer:
     def __init__(self):
         try:
@@ -19,6 +20,7 @@ class LocalComputer:
 
     def screenshot(self)->bytes:
         from io import BytesIO
+
         from PIL import Image
         with self._mss.mss() as sct:
             shot=sct.grab(sct.monitors[0])

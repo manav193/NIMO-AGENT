@@ -1,6 +1,8 @@
 from pathlib import Path
+
 from tools.filesystem import SafeFileSystem
 from tools.terminal import SafeTerminal
+
 
 def test_filesystem_blocks_escape(tmp_path: Path):
     fs = SafeFileSystem([tmp_path])

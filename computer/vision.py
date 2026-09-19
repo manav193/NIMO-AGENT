@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class ScreenObservation:
     width: int
@@ -19,6 +20,7 @@ class ScreenObserver:
         width = height = 0
         try:
             from io import BytesIO
+
             from PIL import Image
             with Image.open(BytesIO(image)) as im:
                 width, height = im.size
@@ -27,8 +29,9 @@ class ScreenObserver:
         text = ""
         if ocr:
             try:
-                import pytesseract
                 from io import BytesIO
+
+                import pytesseract
                 from PIL import Image
                 with Image.open(BytesIO(image)) as im:
                     text = pytesseract.image_to_string(im)[:self.max_text]

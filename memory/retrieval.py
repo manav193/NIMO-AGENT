@@ -1,6 +1,8 @@
 """Consent-aware retrieval over encrypted personal memory."""
 from dataclasses import dataclass
+
 from security.consent import Purpose
+
 
 @dataclass(frozen=True)
 class MemoryHit:

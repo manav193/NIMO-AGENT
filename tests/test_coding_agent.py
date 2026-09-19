@@ -1,5 +1,7 @@
-from github.workspace import Workspace,WorkspacePolicy
 from github.edit import EditEngine
+from github.workspace import Workspace, WorkspacePolicy
+
+
 def test_workspace_blocks_escape(tmp_path):
     w=Workspace(WorkspacePolicy(tmp_path))
     try: w.read("../secret")

@@ -2,6 +2,7 @@ from pathlib import Path
 
 from tools.contracts import RiskLevel, ToolResult, ToolSpec
 
+
 class SafeFileSystem:
     def __init__(self, roots: list[Path]):
         self.roots = tuple(p.resolve() for p in roots)

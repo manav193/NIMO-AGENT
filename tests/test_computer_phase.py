@@ -1,8 +1,7 @@
-from computer.adapter import DryRunComputer
-from computer.controller import ComputerController
-from computer.policy import ComputerPolicy
 from computer.session import ComputerSession
 from computer.verification import ComputerVerifier
+
+
 def test_session_stop_is_latched():
     s=ComputerSession("x"); s.stop()
     try: s.check()

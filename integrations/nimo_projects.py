@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum
 
+
 class ProjectAction(str, Enum):
     OPEN = "open"
     STATUS = "status"

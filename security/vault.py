@@ -6,8 +6,12 @@ bytes to EncryptedVault for embedding in a platform keychain adapter later.
 """
 from __future__ import annotations
 
-import base64, json, os, secrets
+import base64
+import json
+import os
+import secrets
 from pathlib import Path
+
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 KEY_ENV="NIMO_VAULT_KEY"

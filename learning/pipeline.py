@@ -1,7 +1,10 @@
 """Consent-gated learning ingestion; no raw personal records enter knowledge."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from security.consent import ConsentManager, Purpose
+
 
 @dataclass(frozen=True)
 class LearningProposal:

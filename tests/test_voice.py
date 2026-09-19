@@ -1,5 +1,7 @@
-from voice.wake import WakeWordGate
 from voice.session import VoiceSession
+from voice.wake import WakeWordGate
+
+
 def test_wake_gate():
     g=WakeWordGate(); assert g.feed("hey NIMO"); assert g.active
 def test_voice_session_bounds():

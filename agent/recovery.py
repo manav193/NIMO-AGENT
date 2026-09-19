@@ -1,5 +1,7 @@
 """Bounded recovery policy for tool failures."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class RecoveryDecision:
     retry:bool

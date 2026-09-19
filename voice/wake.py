@@ -1,5 +1,7 @@
 """Wake-word state machine; audio capture is kept behind an adapter."""
 from dataclasses import dataclass
+
+
 @dataclass
 class WakeWordGate:
     wake_word:str="nimo"

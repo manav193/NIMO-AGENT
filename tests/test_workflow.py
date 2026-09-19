@@ -1,6 +1,8 @@
-from automation.workflow import Workflow,WorkflowStep,WorkflowEngine
-from automation.triggers import Trigger,TriggerRegistry
 from automation.retry import RetryPolicy
+from automation.triggers import Trigger, TriggerRegistry
+from automation.workflow import Workflow, WorkflowEngine, WorkflowStep
+
+
 def test_workflow_has_step_bound():
     w=Workflow("x",[WorkflowStep("1","noop")])
     out=WorkflowEngine(lambda a,args: a).run(w); assert out==["noop"]

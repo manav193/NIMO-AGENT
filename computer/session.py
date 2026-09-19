@@ -1,5 +1,7 @@
 """Computer-use session state with a latched emergency stop."""
 from dataclasses import dataclass
+
+
 @dataclass
 class ComputerSession:
     session_id:str

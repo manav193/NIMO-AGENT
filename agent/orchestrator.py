@@ -1,6 +1,8 @@
 """End-to-end model -> permission -> tool -> observe -> verify loop."""
 from dataclasses import dataclass
 from typing import Any
+
+
 @dataclass(frozen=True)
 class OrchestrationResult:
     reply:str

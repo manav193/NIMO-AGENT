@@ -1,7 +1,9 @@
 """Safe Git workspace inspection/edit staging boundary."""
+import difflib
 from dataclasses import dataclass
 from pathlib import Path
-import difflib
+
+
 @dataclass(frozen=True)
 class WorkspacePolicy:
     root:Path

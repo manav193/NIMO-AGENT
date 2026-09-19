@@ -1,7 +1,7 @@
 """Minimal local consent UI. Intentionally product-like, not 'AI themed'."""
 from __future__ import annotations
-from http.server import BaseHTTPRequestHandler,HTTPServer
-import html
+
+from http.server import BaseHTTPRequestHandler, HTTPServer
 
 CSS="""body{margin:0;background:#f4f1ea;color:#252525;font-family:Inter,system-ui,sans-serif}
 main{max-width:760px;margin:64px auto;padding:0 24px}.card{background:#fff;border:1px solid #ddd7cc;border-radius:14px;padding:28px;margin:16px 0}

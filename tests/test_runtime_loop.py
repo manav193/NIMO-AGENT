@@ -2,10 +2,11 @@ from agent.executor import Executor
 from agent.observer import Observer
 from agent.planner import Planner
 from agent.verifier import Verifier
-from tools.contracts import RiskLevel, ToolRequest, ToolResult, ToolSpec
-from tools.registry import ToolRegistry
 from security.audit import AuditLogger
 from security.permissions import PermissionEngine
+from tools.contracts import RiskLevel, ToolRequest, ToolResult, ToolSpec
+from tools.registry import ToolRegistry
+
 
 def echo(args):
     return ToolResult(success=True, output=args)

@@ -3,6 +3,7 @@ from datetime import datetime
 from enum import Enum
 from typing import Any
 
+
 class TriggerType(str, Enum):
     SCHEDULE = "schedule"
     EVENT = "event"

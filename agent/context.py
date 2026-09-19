@@ -1,5 +1,7 @@
 """Bounded context builder for latency and data minimization."""
 from dataclasses import dataclass
+
+
 @dataclass
 class ContextWindow:
     max_chars:int=12000

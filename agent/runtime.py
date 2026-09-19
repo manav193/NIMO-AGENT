@@ -1,13 +1,15 @@
 from dataclasses import dataclass
 from typing import Any
-from agent.state import AgentState
-from security.audit import AuditLogger
+
 from agent.executor import Executor
 from agent.observer import Observer
 from agent.planner import Planner
+from agent.state import AgentState
 from agent.verifier import Verifier
+from security.audit import AuditLogger
 from security.permissions import PermissionEngine
 from tools.registry import ToolRegistry
+
 
 @dataclass
 class AgentResult:

@@ -1,13 +1,15 @@
+from collections.abc import Callable
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
-from typing import Any, Callable
+from datetime import UTC, datetime
+from typing import Any
+
 
 @dataclass(frozen=True)
 class AutomationEvent:
     name: str
     payload: dict[str, Any] = field(default_factory=dict)
     event_id: str | None = None
-    occurred_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    occurred_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 class EventBus:
     """In-process event boundary. Subscribers must be explicit."""

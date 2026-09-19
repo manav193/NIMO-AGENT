@@ -1,5 +1,7 @@
 """Allowlisted trigger types."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class Trigger:
     kind:str

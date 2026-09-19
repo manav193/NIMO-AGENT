@@ -1,5 +1,7 @@
 """Post-action verification primitives."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class ActionVerification:
     success:bool

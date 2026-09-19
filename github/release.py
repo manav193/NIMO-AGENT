@@ -1,6 +1,7 @@
 """Approval-gated commit/push/PR workflow contract."""
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class ReleaseProposal:
     branch: str

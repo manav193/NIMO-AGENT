@@ -1,11 +1,11 @@
+from security.audit import AuditLogger
+from security.kill_switch import KillSwitch
+from security.permissions import PermissionEngine
+from security.rate_limit import RateLimiter
+from security.suspicious import SuspiciousActivityDetector
 from tools.contracts import ToolRequest, ToolResult
 from tools.registry import ToolRegistry
-from security.audit import AuditLogger
-from security.permissions import PermissionEngine
-from security.suspicious import SuspiciousActivityDetector
-from security.secrets import redact
-from security.rate_limit import RateLimiter
-from security.kill_switch import KillSwitch
+
 
 class Executor:
     """Single execution choke point: lookup -> policy -> handler -> audit."""

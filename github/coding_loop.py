@@ -1,5 +1,7 @@
 """Bounded code/test/fix orchestration. No automatic commit or push."""
 from dataclasses import dataclass
+
+
 @dataclass(frozen=True)
 class CodingRun:
     proposals:list

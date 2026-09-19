@@ -1,4 +1,6 @@
 from knowledge.connector import KnowledgeConnector
+
+
 def test_knowledge_rejects_unsanitized():
     class S:
         def search(self,q,limit): return [{"sanitized":False,"status":"active"},{"sanitized":True,"status":"approved","id":"2"}]

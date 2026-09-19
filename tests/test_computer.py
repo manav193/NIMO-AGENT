@@ -2,6 +2,7 @@ from computer.adapter import DryRunComputer
 from computer.controller import ComputerController
 from computer.policy import ComputerPolicy
 
+
 def test_disabled_by_default():
     c=ComputerController(DryRunComputer([]),ComputerPolicy())
     try: c.click(10,10)

@@ -2,6 +2,7 @@ from automation.engine import AutomationEngine
 from automation.models import Automation, TriggerType
 from integrations.email import AcknowledgementService, EmailMessage
 
+
 class FakeEmail:
     def __init__(self):
         self.sent = []

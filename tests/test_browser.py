@@ -2,6 +2,7 @@ from browser.adapter import DryRunBrowser
 from browser.controller import BrowserController
 from browser.policy import BrowserPolicy
 
+
 def test_browser_disabled_by_default():
     c=BrowserController(DryRunBrowser(),BrowserPolicy())
     try: c.open("https://example.com")

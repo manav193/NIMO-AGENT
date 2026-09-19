@@ -1,10 +1,17 @@
-from datetime import datetime, timezone, timedelta
+from datetime import UTC, datetime, timedelta
+
 from automation.events import AutomationEvent, EventBus
 from automation.scheduler import Scheduler, ScheduleSpec
-from integrations.providers import ProviderCapability, ProviderRegistry, ProviderRequest, ProviderResult
-from integrations.plugin_router import PluginInvocation
-from integrations.registry import PluginRegistry, PluginSpec
 from integrations.dispatcher import PluginDispatcher
+from integrations.plugin_router import PluginInvocation
+from integrations.providers import (
+    ProviderCapability,
+    ProviderRegistry,
+    ProviderRequest,
+    ProviderResult,
+)
+from integrations.registry import PluginRegistry, PluginSpec
+
 
 class DemoProvider:
     name = "demo"
@@ -30,7 +37,7 @@ def test_event_bus():
 
 def test_persistent_scheduler_claim():
     scheduler=Scheduler()
-    when=datetime.now(timezone.utc)+timedelta(seconds=1)
+    when=datetime.now(UTC)+timedelta(seconds=1)
     job=scheduler.schedule(ScheduleSpec("a",when))
     assert scheduler.claim(job) is False
     due=scheduler.due(when+timedelta(seconds=1))

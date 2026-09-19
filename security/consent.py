@@ -1,7 +1,9 @@
 """Purpose-specific consent enforcement for personal data and learning."""
 from __future__ import annotations
+
 from dataclasses import dataclass
 from enum import StrEnum
+
 
 class Purpose(StrEnum):
     PERSONAL_MEMORY="personal_memory"

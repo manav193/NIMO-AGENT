@@ -1,5 +1,6 @@
 from integrations.plugin_router import parse_plugin_invocations
 
+
 def test_single_plugin_invocation():
     items = parse_plugin_invocations("@gmail summarize unread mail")
     assert items == [type(items[0])("gmail", "summarize unread mail")]

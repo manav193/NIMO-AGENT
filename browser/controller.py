@@ -1,8 +1,11 @@
 """Policy-enforced browser controller. No direct browser calls from the agent."""
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 from browser.adapter import BrowserAdapter
 from browser.policy import BrowserPolicy
+
 
 @dataclass
 class BrowserController:

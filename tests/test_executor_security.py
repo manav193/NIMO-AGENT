@@ -1,8 +1,9 @@
-from tools.contracts import RiskLevel, ToolRequest, ToolResult, ToolSpec
-from tools.registry import ToolRegistry
+from agent.executor import Executor
 from security.audit import AuditLogger
 from security.permissions import PermissionEngine
-from agent.executor import Executor
+from tools.contracts import RiskLevel, ToolRequest, ToolResult, ToolSpec
+from tools.registry import ToolRegistry
+
 
 def test_executor_blocks_restricted_and_requires_confirmation():
     audit = AuditLogger()
