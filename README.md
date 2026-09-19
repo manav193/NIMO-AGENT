@@ -71,3 +71,8 @@ No model response receives direct OS authority.
 ### Browser Agent
 
 The browser layer now has an optional Playwright/Chromium adapter, isolated browser contexts per session, bounded page observation, screenshots, navigation, click/fill/select/press/upload/download primitives, explicit host/download policy, and bounded recovery. Browser automation remains disabled by default and the Agent must reach it through the controller/permission boundary.
+
+
+### Computer Agent
+
+The desktop layer now includes screen observation, optional OCR, window/app observation, post-action verification, latched computer sessions, and an explicit allowlisted launcher contract. Physical input remains opt-in, coordinate-bounded, key-allowlisted, and emergency-stop capable. No arbitrary shell/process launching is exposed by the computer layer.
