@@ -91,3 +91,8 @@ The voice layer now has provider-neutral STT/TTS contracts, wake-word gating, ex
 ### Memory + NIMO-KNOWLEDGE Integration
 
 Memory retrieval now has a consent boundary, bounded relevance results, minimal model context construction, explicit forgetting, and a connector that accepts only sanitized approved/active NIMO-KNOWLEDGE entries. Learning/model-improvement paths have separate consent gates.
+
+
+### Advanced Automation / Workflow Engine
+
+Automation now has explicit workflow steps, validation and size bounds, allowlisted trigger types, bounded retry/backoff, lifecycle states, confirmation-aware steps, and provider-neutral notification sinks.
