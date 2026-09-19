@@ -14,6 +14,14 @@ def test_automation_registration():
     engine.register(Automation("mail-ack", "Mail acknowledgement", TriggerType.EVENT, "email.ack"))
     assert engine.get("mail-ack").enabled
 
+def test_automation_lifecycle():
+    engine = AutomationEngine()
+    engine.register(Automation("x", "X", TriggerType.EVENT, "noop"))
+    engine.disable("x")
+    assert not engine.get("x").enabled
+    engine.enable("x")
+    assert engine.get("x").enabled
+
 def test_acknowledgement_sends_receipt():
     provider = FakeEmail()
     message_id = AcknowledgementService(provider).acknowledge("a@example.com", "Hello")
