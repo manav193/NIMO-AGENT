@@ -14,9 +14,9 @@ class BranchPolicy:
             raise PermissionError("Protected branch cannot be directly modified.")
 
 class BranchWorkflow:
-    def __init__(self, git, policy=BranchPolicy()):
+    def __init__(self, git, policy=None):
         self.git = git
-        self.policy = policy
+        self.policy = policy or BranchPolicy()
 
     def create(self, name):
         self.policy.validate(name)
