@@ -76,3 +76,8 @@ The browser layer now has an optional Playwright/Chromium adapter, isolated brow
 ### Computer Agent
 
 The desktop layer now includes screen observation, optional OCR, window/app observation, post-action verification, latched computer sessions, and an explicit allowlisted launcher contract. Physical input remains opt-in, coordinate-bounded, key-allowlisted, and emergency-stop capable. No arbitrary shell/process launching is exposed by the computer layer.
+
+
+### GitHub Coding Agent
+
+The coding layer now provides a bounded workspace boundary, reviewable unified-diff edit proposals, stale-workspace protection, bounded test execution through the safe terminal path, and a capped test/fix loop. Edits remain explicitly reviewable; commit/push/PR actions are not silently performed.
