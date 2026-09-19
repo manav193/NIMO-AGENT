@@ -1,6 +1,7 @@
-from tools.contracts import ToolRequest, ToolResult, ToolSpec
+from tools.contracts import ToolSpec
 
 class ToolRegistry:
+    """Declarative tool catalogue. Execution belongs exclusively to Executor."""
     def __init__(self) -> None:
         self._tools: dict[str, ToolSpec] = {}
 
@@ -17,6 +18,3 @@ class ToolRegistry:
 
     def list(self) -> list[ToolSpec]:
         return list(self._tools.values())
-
-    def execute(self, request: ToolRequest) -> ToolResult:
-        return self.get(request.tool_name).handler(request.arguments)
