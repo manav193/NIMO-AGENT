@@ -101,3 +101,8 @@ Automation now has explicit workflow steps, validation and size bounds, allowlis
 ### Security Hardening
 
 The execution choke point now has deterministic suspicious-activity checks, rate limiting, secret redaction for audit material, an independent command sandbox policy, and a latched emergency kill switch. Critical findings are blocked before tool handlers execute. Security decisions do not depend on model output.
+
+
+### GitHub Release Workflow
+
+The coding layer now has protected-branch validation, explicit branch workflow, test-gated release proposals, approval-gated commit/push/PR contracts, and approval-gated rollback proposals. These contracts keep release authority separate from model-generated code changes.
