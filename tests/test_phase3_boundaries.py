@@ -42,6 +42,6 @@ def test_persistent_scheduler_claim():
     assert scheduler.claim(job) is False
     due=scheduler.due(when+timedelta(seconds=1))
     assert len(due)==1
-    assert scheduler.claim(job) is True
+    assert scheduler.claim(job, now=when + timedelta(seconds=1)) is True
     assert scheduler.due(when+timedelta(seconds=2)) == []
     scheduler.close()
