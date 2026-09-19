@@ -106,3 +106,8 @@ The execution choke point now has deterministic suspicious-activity checks, rate
 ### GitHub Release Workflow
 
 The coding layer now has protected-branch validation, explicit branch workflow, test-gated release proposals, approval-gated commit/push/PR contracts, and approval-gated rollback proposals. These contracts keep release authority separate from model-generated code changes.
+
+
+### Total QA / Release Candidate
+
+A dedicated Total QA workflow runs lint, the complete test suite, and cross-module import smoke tests across Python 3.11, 3.12, and 3.13. Passing CI is the release gate before treating the repository as a release candidate.
