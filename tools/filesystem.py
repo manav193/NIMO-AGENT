@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from tools.contracts import RiskLevel, ToolResult, ToolSpec
 
 class SafeFileSystem:
@@ -15,7 +16,7 @@ class SafeFileSystem:
         try:
             p = self._resolve(args.get("path", "."))
             return ToolResult(True, [x.name for x in sorted(p.iterdir())]) if p.is_dir() else ToolResult(False, error="Not a directory.")
-        except Exception as exc:
+        except (KeyError, OSError, PermissionError, ValueError) as exc:
             return ToolResult(False, error=str(exc))
 
     def read_file(self, args: dict) -> ToolResult:
@@ -24,7 +25,7 @@ class SafeFileSystem:
             if not p.is_file():
                 return ToolResult(False, error="Not a file.")
             return ToolResult(True, p.read_text(encoding="utf-8")[:100000])
-        except Exception as exc:
+        except (KeyError, OSError, PermissionError, UnicodeError, ValueError) as exc:
             return ToolResult(False, error=str(exc))
 
     def specs(self) -> list[ToolSpec]:
