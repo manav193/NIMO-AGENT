@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 from typing import Any
+
 from integrations.plugin_router import PluginInvocation
-from integrations.registry import PluginRegistry
 from integrations.providers import ProviderRegistry, ProviderRequest, ProviderResult
+from integrations.registry import PluginRegistry
 from security.audit import AuditLogger
 
 @dataclass(frozen=True)
@@ -30,15 +31,18 @@ class PluginDispatcher:
                 return DispatchResult(invocation.provider, invocation.task, True, output=output)
             provider = self.providers.resolve(invocation.provider)
             result: ProviderResult = provider.execute(
-                ProviderRequest(provider=invocation.provider, operation="natural_language", payload={"task": invocation.task})
+                ProviderRequest(provider=invocation.provider, operation="natural_language",
+                                payload={"task": invocation.task})
             )
             self.audit.record("provider.dispatch", "agent", invocation.provider, {"success": result.success})
             return DispatchResult(invocation.provider, invocation.task, result.success,
                                   output=result.data, error=result.error)
-        except (KeyError, ValueError) as exc:
-            self.audit.record("plugin.dispatch_error", "agent", invocation.provider, {"type": type(exc).__name__})
+        except (KeyError, ValueError, TypeError) as exc:
+            self.audit.record("plugin.dispatch_error", "agent", invocation.provider,
+                              {"type": type(exc).__name__})
             return DispatchResult(invocation.provider, invocation.task, False, error=str(exc))
-        except Exception as exc:
-            self.audit.record("plugin.dispatch_error", "agent", invocation.provider, {"type": type(exc).__name__})
+        except (OSError, RuntimeError) as exc:
+            self.audit.record("plugin.dispatch_error", "agent", invocation.provider,
+                              {"type": type(exc).__name__})
             return DispatchResult(invocation.provider, invocation.task, False,
                                   error=f"Provider failure: {type(exc).__name__}")
