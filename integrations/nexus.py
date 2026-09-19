@@ -41,7 +41,7 @@ class NexusClient:
             raise RuntimeError("NEXUS transport is not configured.")
 
         if not isinstance(response, dict):
-            raise ValueError("Invalid NEXUS decision response.")
+            raise TypeError("Invalid NEXUS decision response.")
         return NexusDecision(
             allowed=bool(response.get("allowed", False)),
             requires_approval=bool(
