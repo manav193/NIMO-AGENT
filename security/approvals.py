@@ -1,8 +1,16 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass
 class ApprovalManager:
-    """Phase-2 approval boundary. UI/interactive approval is added later."""
+    """Explicit approval boundary; nothing is approved implicitly."""
+    approved_tokens: set[str] = field(default_factory=set)
 
-    def approve(self, reason: str) -> bool:
+    def request(self, token: str) -> bool:
         return False
+
+    def grant(self, token: str) -> None:
+        if token:
+            self.approved_tokens.add(token)
+
+    def approve(self, token: str, reason: str = "") -> bool:
+        return bool(token) and token in self.approved_tokens
