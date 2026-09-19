@@ -1,9 +1,10 @@
 """NEXUS control-plane integration boundary."""
 from __future__ import annotations
 
-from dataclasses import dataclass
 import json
-from typing import Any, Callable
+from collections.abc import Callable
+from dataclasses import dataclass
+from typing import Any
 from urllib.request import Request, urlopen
 
 
