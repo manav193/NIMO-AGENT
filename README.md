@@ -55,3 +55,14 @@ serve()
 ```
 
 Then open `http://127.0.0.1:8765/`.
+
+
+## Big Phase: Model Brain
+
+The Agent now has a structured model-brain boundary over NIMO-Core, bounded context construction, tool-intent parsing, orchestration through the existing permission/runtime path, and bounded recovery decisions. Model output is treated as untrusted structured input; unknown/malformed tool intents are ignored rather than executed. Context is capped to reduce latency and accidental data exposure.
+
+The architecture remains:
+
+`User → Agent Brain → NIMO-Core → structured tool intent → Permission → Tool → Observe → Verify`
+
+No model response receives direct OS authority.
