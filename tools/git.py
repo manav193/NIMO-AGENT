@@ -34,6 +34,26 @@ class GitWorkspace:
     def log(self,limit:int=20):
         limit=max(1,min(limit,50)); return self._run(["log",f"--max-count={limit}","--oneline","--decorate"])
     def branch(self): return self._run(["branch","--show-current"])
+    def create_branch(self,name):
+        if not name or name.startswith("-") or any(c in name for c in [" ",";","&&","|"]):
+            raise ValueError("Invalid branch name.")
+        return self._run(["switch","-c",name])
+
+    def commit(self,message):
+        if not message or len(message)>200 or message.startswith("-"):
+            raise ValueError("Invalid commit message.")
+        return self._run(["commit","-m",message])
+
+    def push(self,branch):
+        if not branch or branch.startswith("-") or any(c in branch for c in [" ",";","&&","|"]):
+            raise ValueError("Invalid branch name.")
+        return self._run(["push","origin",branch])
+
+    def reset(self,target):
+        if not target or target.startswith("-") or any(c in target for c in [";","&&","|"]):
+            raise ValueError("Invalid git target.")
+        return self._run(["reset","--hard",target])
+
     def show(self,ref="HEAD"):
         if not ref or ref.startswith("-") or any(c in ref for c in [";","&&","|"]):
             raise ValueError("Invalid git ref.")
