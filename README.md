@@ -81,3 +81,8 @@ The desktop layer now includes screen observation, optional OCR, window/app obse
 ### GitHub Coding Agent
 
 The coding layer now provides a bounded workspace boundary, reviewable unified-diff edit proposals, stale-workspace protection, bounded test execution through the safe terminal path, and a capped test/fix loop. Edits remain explicitly reviewable; commit/push/PR actions are not silently performed.
+
+
+### Voice / Hands-Free Agent
+
+The voice layer now has provider-neutral STT/TTS contracts, wake-word gating, explicit voice sessions, bounded input, stop controls, and a voice-to-Agent bridge. Audio providers remain adapters; the voice layer itself never executes tools directly.
