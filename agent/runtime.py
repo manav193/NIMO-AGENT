@@ -3,6 +3,10 @@ from typing import Any
 
 from agent.state import AgentState
 from security.audit import AuditLogger
+from agent.executor import Executor
+from agent.observer import Observer
+from agent.planner import Planner
+from agent.verifier import Verifier
 from security.permissions import PermissionEngine
 from tools.registry import ToolRegistry
 
@@ -24,6 +28,10 @@ class AgentRuntime:
         self.registry = registry
         self.permissions = permissions
         self.audit = audit
+        self.planner = Planner()
+        self.executor = Executor(registry)
+        self.observer = Observer()
+        self.verifier = Verifier()
 
     def handle_text(self, text: str, state: AgentState) -> AgentResult:
         state.messages.append({"role": "user", "content": text})
@@ -33,4 +41,8 @@ class AgentRuntime:
             resource="session",
             details={"session_id": state.session_id},
         )
-        return AgentResult(message="NIMO-Agent foundation ready.", data={"input": text})
+        plan = self.planner.create_plan(text)
+        self.audit.record(action="agent.plan", actor="agent", resource="session", details={"steps": len(plan)})
+        verification = {"success": True, "reason": "No tool execution required."}
+        self.audit.record(action="agent.verify", actor="agent", resource="session", details=verification)
+        return AgentResult(message="Plan created.", data={"input": text, "steps": [step.action for step in plan], "verification": verification})
