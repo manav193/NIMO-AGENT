@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from typing import Any
-
 from agent.state import AgentState
 from security.audit import AuditLogger
 from agent.executor import Executor
@@ -17,32 +16,31 @@ class AgentResult:
     data: dict[str, Any] | None = None
 
 class AgentRuntime:
-    """Small deterministic shell for the future plan→act→observe→verify loop."""
-
-    def __init__(
-        self,
-        registry: ToolRegistry,
-        permissions: PermissionEngine,
-        audit: AuditLogger,
-    ) -> None:
+    """Plan -> act -> observe -> verify runtime shell with a mandatory permission gate."""
+    def __init__(self, registry: ToolRegistry, permissions: PermissionEngine, audit: AuditLogger) -> None:
         self.registry = registry
         self.permissions = permissions
         self.audit = audit
         self.planner = Planner()
-        self.executor = Executor(registry)
+        self.executor = Executor(registry, permissions, audit)
         self.observer = Observer()
         self.verifier = Verifier()
 
+    def execute_tool(self, request):
+        result = self.executor.execute(request)
+        observation = self.observer.observe(result)
+        verification = self.verifier.verify(result)
+        self.audit.record("agent.verify", "agent", request.tool_name, {"success": verification.success})
+        return result, observation, verification
+
     def handle_text(self, text: str, state: AgentState) -> AgentResult:
         state.messages.append({"role": "user", "content": text})
-        self.audit.record(
-            action="agent.input",
-            actor="user",
-            resource="session",
-            details={"session_id": state.session_id},
-        )
+        self.audit.record("agent.input", "user", "session", {"session_id": state.session_id})
         plan = self.planner.create_plan(text)
-        self.audit.record(action="agent.plan", actor="agent", resource="session", details={"steps": len(plan)})
+        self.audit.record("agent.plan", "agent", "session", {"steps": len(plan)})
         verification = {"success": True, "reason": "No tool execution required."}
-        self.audit.record(action="agent.verify", actor="agent", resource="session", details=verification)
-        return AgentResult(message="Plan created.", data={"input": text, "steps": [step.action for step in plan], "verification": verification})
+        self.audit.record("agent.verify", "agent", "session", verification)
+        return AgentResult(
+            message="Plan created.",
+            data={"input": text, "steps": [step.action for step in plan], "verification": verification},
+        )
