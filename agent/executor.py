@@ -55,7 +55,7 @@ class Executor:
             return ToolResult(False, error="User confirmation required before execution.")
         try:
             result = spec.handler(request.arguments)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001 - isolate untrusted tool handlers
             self.audit.record("tool.error", request.requested_by, request.tool_name, {"type": type(exc).__name__})
             return ToolResult(False, error=f"Tool execution failed: {type(exc).__name__}")
         self.audit.record("tool.execute", request.requested_by, request.tool_name, {"success": result.success})
