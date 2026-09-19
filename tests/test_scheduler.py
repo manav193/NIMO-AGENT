@@ -1,10 +1,11 @@
-from datetime import datetime, timezone, timedelta
-from automation.scheduler import Scheduler, ScheduleSpec
+from datetime import datetime, timedelta, timezone
+
+from automation.scheduler import ScheduleSpec, Scheduler
 
 def test_scheduler_requires_timezone():
     scheduler = Scheduler()
     try:
-        scheduler.schedule(ScheduleSpec("x", datetime(2030, 1, 1)))
+        scheduler.schedule(ScheduleSpec("x", datetime(2030, 1, 1, tzinfo=timezone.utc).replace(tzinfo=None)))
         assert False
     except ValueError:
         pass
