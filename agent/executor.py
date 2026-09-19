@@ -4,7 +4,7 @@ from security.audit import AuditLogger
 from security.permissions import PermissionEngine
 
 class Executor:
-    """Executes tools only after the central permission gate approves them."""
+    """Single execution choke point: lookup -> policy -> handler -> audit."""
     def __init__(self, registry: ToolRegistry, permissions: PermissionEngine, audit: AuditLogger):
         self.registry = registry
         self.permissions = permissions
@@ -13,7 +13,7 @@ class Executor:
     def execute(self, request: ToolRequest) -> ToolResult:
         spec = self.registry.get(request.tool_name)
         decision = self.permissions.evaluate(spec)
-        self.audit.record("tool.permission", "agent", request.tool_name, {
+        self.audit.record("tool.permission", request.requested_by, request.tool_name, {
             "allowed": decision.allowed,
             "requires_confirmation": decision.requires_confirmation,
         })
@@ -21,6 +21,10 @@ class Executor:
             return ToolResult(False, error=decision.reason)
         if decision.requires_confirmation:
             return ToolResult(False, error="User confirmation required before execution.")
-        result = spec.handler(request.arguments)
-        self.audit.record("tool.execute", "agent", request.tool_name, {"success": result.success})
+        try:
+            result = spec.handler(request.arguments)
+        except Exception as exc:
+            self.audit.record("tool.error", request.requested_by, request.tool_name, {"type": type(exc).__name__})
+            return ToolResult(False, error=f"Tool execution failed: {type(exc).__name__}")
+        self.audit.record("tool.execute", request.requested_by, request.tool_name, {"success": result.success})
         return result
