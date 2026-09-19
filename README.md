@@ -35,3 +35,23 @@ nimo-agent/
 ## Status
 
 Phase 0 — Foundation initialized.
+
+
+## Privacy and data boundary
+
+- Personal memory is stored through the encrypted local vault using authenticated AES-GCM.
+- The vault key is supplied outside the repository through `NIMO_VAULT_KEY`; keys are never committed.
+- Personal memory, learning contribution, and model improvement are separate consent purposes.
+- Missing or revoked consent blocks the corresponding operation.
+- Learning proposals must be sanitized, minimized, and secret-free before they can enter the learning pipeline.
+- NIMO-KNOWLEDGE remains a curated knowledge layer; raw personal conversations and secrets do not belong there.
+- Local settings UI is deliberately neutral and utilitarian: warm neutral surfaces, black/gray text, no blue/dark-blue gradients, glows, or generic AI-dashboard styling.
+
+Run the local settings page with:
+
+```python
+from ui.app import serve
+serve()
+```
+
+Then open `http://127.0.0.1:8765/`.
