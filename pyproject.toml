@@ -16,6 +16,11 @@ dev = [
   "pytest>=8.0",
   "ruff>=0.6",
 ]
+computer = [
+  "mss>=9.0",
+  "pyautogui>=0.9",
+  "Pillow>=10.0",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -25,10 +30,3 @@ addopts = "-q"
 [tool.ruff]
 line-length = 100
 target-version = "py311"
-
-[project.optional-dependencies]
-computer = [
-  "mss>=9.0",
-  "pyautogui>=0.9",
-  "Pillow>=10.0",
-]
