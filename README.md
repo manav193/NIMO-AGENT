@@ -96,3 +96,8 @@ Memory retrieval now has a consent boundary, bounded relevance results, minimal 
 ### Advanced Automation / Workflow Engine
 
 Automation now has explicit workflow steps, validation and size bounds, allowlisted trigger types, bounded retry/backoff, lifecycle states, confirmation-aware steps, and provider-neutral notification sinks.
+
+
+### Security Hardening
+
+The execution choke point now has deterministic suspicious-activity checks, rate limiting, secret redaction for audit material, an independent command sandbox policy, and a latched emergency kill switch. Critical findings are blocked before tool handlers execute. Security decisions do not depend on model output.
