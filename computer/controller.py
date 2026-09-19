@@ -30,5 +30,20 @@ class ComputerController:
     def open_app(self,app:str)->None:
         self.policy.check_app(app); self.adapter.open_app(app)
 
+    def observe(self, observer, ocr=False):
+        self.policy.check_enabled()
+        return observer.observe(self.adapter, ocr=ocr)
+
+    def verify_click(self, verifier, x:int, y:int):
+        self.policy.check_point(x,y)
+        observation=self.screenshot()
+        try:
+            from PIL import Image
+            from io import BytesIO
+            with Image.open(BytesIO(observation)) as im: size=im.size
+        except Exception:
+            size=(self.policy.max_x+1,self.policy.max_y+1)
+        return verifier.verify_click(x,y,size)
+
     def stop(self)->None:
         self.policy.emergency_stop=True
