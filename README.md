@@ -66,3 +66,8 @@ The architecture remains:
 `User → Agent Brain → NIMO-Core → structured tool intent → Permission → Tool → Observe → Verify`
 
 No model response receives direct OS authority.
+
+
+### Browser Agent
+
+The browser layer now has an optional Playwright/Chromium adapter, isolated browser contexts per session, bounded page observation, screenshots, navigation, click/fill/select/press/upload/download primitives, explicit host/download policy, and bounded recovery. Browser automation remains disabled by default and the Agent must reach it through the controller/permission boundary.
