@@ -28,6 +28,29 @@ class BrowserController:
         if not selector: raise ValueError("Selector is required.")
         self.adapter.fill(selector,text)
 
+    def select(self,selector:str,value:str)->None:
+        if not self.policy.enabled: raise PermissionError("Browser automation is disabled.")
+        if not selector or len(selector)>500 or len(value)>500: raise ValueError("Invalid select input.")
+        if not hasattr(self.adapter,"select"): raise NotImplementedError("Adapter does not support select.")
+        self.adapter.select(selector,value)
+
+    def press(self,selector:str,key:str)->None:
+        if not self.policy.enabled: raise PermissionError("Browser automation is disabled.")
+        if not selector or len(selector)>500 or len(key)>64: raise ValueError("Invalid key input.")
+        if not hasattr(self.adapter,"press"): raise NotImplementedError("Adapter does not support press.")
+        self.adapter.press(selector,key)
+
+    def upload(self,selector:str,path:str)->None:
+        if not self.policy.enabled: raise PermissionError("Browser automation is disabled.")
+        if not selector or not path: raise ValueError("Selector and path are required.")
+        if not hasattr(self.adapter,"upload"): raise NotImplementedError("Adapter does not support upload.")
+        self.adapter.upload(selector,path)
+
+    def screenshot(self,path:str|None=None)->bytes:
+        if not self.policy.enabled: raise PermissionError("Browser automation is disabled.")
+        if not hasattr(self.adapter,"screenshot"): raise NotImplementedError("Adapter does not support screenshots.")
+        return self.adapter.screenshot(path)
+
     def download(self,url:str)->str:
         self.policy.check_url(url); self.policy.check_download(); return self.adapter.download(url)
 
