@@ -86,3 +86,8 @@ The coding layer now provides a bounded workspace boundary, reviewable unified-d
 ### Voice / Hands-Free Agent
 
 The voice layer now has provider-neutral STT/TTS contracts, wake-word gating, explicit voice sessions, bounded input, stop controls, and a voice-to-Agent bridge. Audio providers remain adapters; the voice layer itself never executes tools directly.
+
+
+### Memory + NIMO-KNOWLEDGE Integration
+
+Memory retrieval now has a consent boundary, bounded relevance results, minimal model context construction, explicit forgetting, and a connector that accepts only sanitized approved/active NIMO-KNOWLEDGE entries. Learning/model-improvement paths have separate consent gates.
