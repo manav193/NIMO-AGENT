@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 from typing import ClassVar
 
+
 @dataclass(frozen=True)
 class Trigger:
     kind: str
