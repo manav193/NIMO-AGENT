@@ -31,8 +31,12 @@ class Scheduler:
                                (current.isoformat(),)).fetchall()
         return [ScheduleSpec(a, datetime.fromisoformat(r), j) for j,a,r in rows]
 
-    def claim(self, job_id: str) -> bool:
-        cur = self.db.execute("UPDATE jobs SET claimed=1 WHERE job_id=? AND claimed=0", (job_id,))
+    def claim(self, job_id: str, now: datetime | None = None) -> bool:
+        current = (now or datetime.now(UTC)).astimezone(UTC)
+        cur = self.db.execute(
+            "UPDATE jobs SET claimed=1 WHERE job_id=? AND claimed=0 AND run_at<=?",
+            (job_id, current.isoformat()),
+        )
         self.db.commit()
         return cur.rowcount == 1
 
