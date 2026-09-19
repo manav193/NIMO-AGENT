@@ -17,5 +17,5 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: python -m pip install --upgrade pip
       - run: pip install -e ".[dev]"
-      - run: pytest tests/test_privacy.py
-      - run: ruff check security memory learning ui tests/test_privacy.py
+      - run: pytest tests/test_privacy.py tests/test_browser.py tests/test_computer.py
+      - run: ruff check security memory learning ui computer browser tests/test_privacy.py tests/test_browser.py tests/test_computer.py
