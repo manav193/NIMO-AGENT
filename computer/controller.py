@@ -45,7 +45,7 @@ class ComputerController:
 
             from PIL import Image
             with Image.open(BytesIO(observation)) as im: size=im.size
-        except Exception:
+        except (OSError, ValueError):
             size=(self.policy.max_x+1,self.policy.max_y+1)
         return verifier.verify_click(x,y,size)
 
